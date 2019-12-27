@@ -24,7 +24,7 @@
       register: gimp_quarantine
       failed_when: gimp_quarantine.rc != 0 and "No such xattr" not in gimp_quarantine.stderr
       changed_when: gimp_quarantine.rc == 0
-      command: xattr -d com.apple.quarantine /Applications/Gimp.app
+      command: xattr -d com.apple.quarantine /Applications/GIMP-2.10.app
       tags:
         - gimp
 
@@ -38,7 +38,7 @@
       register: gimp_running
       failed_when: False
       changed_when: gimp_running.stdout | length > 0 | bool
-      command: pidof Gimp
+      command: pidof GIMP-2.10
       tags:
         - gimp
 
