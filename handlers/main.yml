@@ -1,0 +1,16 @@
+# Standards: 0.1
+---
+- name: Kill gimp
+  command: killall GIMP-2.10
+  register: gimp_kill
+  failed_when: gimp_kill.rc != 0 and "No matching processes belonging to you were found" not in gimp_kill.stderr
+  become: "{{ (gimp_user != ansible_user_id) | bool }}"
+  become_user: "{{ gimp_user }}"
+
+- name: Start gimp
+  when: gimp_started
+  command: open -j /Applications/GIMP-2.10.app
+  become: "{{ (gimp_user != ansible_user_id) | bool }}"
+  become_user: "{{ gimp_user }}"
+
+...
