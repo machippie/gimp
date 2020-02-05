@@ -1,6 +1,6 @@
 # gimp
 
-[![Build Status](https://cloud.drone.io/api/badges/machippie/gimp/status.svg)](https://cloud.drone.io/machippie/google-chrome)
+[![Build Status](https://cloud.drone.io/api/badges/machippie/gimp/status.svg)](https://cloud.drone.io/machippie/gimp)
 
 Ansible role to configure gimp.
 
