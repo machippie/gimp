@@ -20,33 +20,12 @@
       tags:
         - gimp
 
-    - name: Remove quarantine flag
-      register: gimp_quarantine
-      failed_when: gimp_quarantine.rc != 0 and "No such xattr" not in gimp_quarantine.stderr
-      changed_when: gimp_quarantine.rc == 0
-      command: xattr -d com.apple.quarantine /Applications/GIMP-2.10.app
-      tags:
-        - gimp
-
-    - name: Install pidof package
-      homebrew:
-        name: pidof
-      tags:
-        - gimp
-
-    - name: Check program running
-      register: gimp_running
-      check_mode: False
-      failed_when: False
-      changed_when: gimp_running.stdout | length > 0 | bool
-      command: pidof GIMP-2.10
-      tags:
-        - gimp
-
-    - name: Fact program running
-      set_fact:
-        gimp_started: "{{ gimp_running.stdout_lines | length > 0 | bool }}"
-      tags:
-        - gimp
+- name: Remove quarantine flag
+  register: gimp_quarantine
+  failed_when: gimp_quarantine.rc != 0 and "No such xattr" not in gimp_quarantine.stderr
+  changed_when: gimp_quarantine.rc == 0
+  command: xattr -d com.apple.quarantine /Applications/GIMP-2.10.app
+  tags:
+    - gimp
 
 ...
